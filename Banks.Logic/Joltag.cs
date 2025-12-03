@@ -10,12 +10,19 @@ public class Joltage
         // When we find a digit >= first_digit, the old first_digit
         // becomes a candidate for second_digit.
 
-        for (int i = bankString.Length - 1; i >= 0; i--) {
-            if (bankString[i] >= first_digit) {
+        for (int i = bankString.Length - 2; i >= 0; i--) {
+            int digit = bankString[i] - '0';
+
+            if (digit >= first_digit) {
                 second_digit_canidate = first_digit;
-                if (second_digit_canidate >= second_digit) {
-                    second_digit = first_digit;
-                    first_digit = bankString[i];
+                first_digit = digit;
+
+                for (int j = bankString.Length - 1; j > 0; j--) {
+                    int digit2 = bankString[j] - '0';
+
+                    if (digit2 >= second_digit) {
+                        second_digit = digit2;
+                    }
                 }
             }
         }
